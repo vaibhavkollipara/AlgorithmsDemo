@@ -1,8 +1,11 @@
 package com.algo;
 
+import java.util.LinkedList;
+
 public class BinaryTree {
 
 	private TreeNode root;
+	private LinkedList<TreeNode>[] treeLink = new LinkedList[5];
 
 	public void addNode(int key, String value) {
 		TreeNode newNode = new TreeNode(key, value);
@@ -33,53 +36,64 @@ public class BinaryTree {
 			}
 		}
 	}
-	
 
-	
-public boolean findNode(int key){
-	TreeNode focus = root;
-	boolean found=false;
-	while(focus!=null){
-		if(focus.getKey()==key){
-			found=true;
-			break;
-		}else{
-			if(focus.getKey()<key){
-				focus = focus.getRight();
-			}else{
-				focus = focus.getLeft();
+	public boolean findNode(int key) {
+		TreeNode focus = root;
+		boolean found = false;
+		while (focus != null) {
+			if (focus.getKey() == key) {
+				found = true;
+				break;
+			} else {
+				if (focus.getKey() < key) {
+					focus = focus.getRight();
+				} else {
+					focus = focus.getLeft();
+				}
 			}
 		}
+		return found;
 	}
-	return found;
-}
-	
-	public void inorder(TreeNode focus){
-		if(focus!=null){
+
+	public void inorder(TreeNode focus) {
+		if (focus != null) {
 			inorder(focus.getLeft());
 			System.out.println(focus.getKey());
 			inorder(focus.getRight());
 		}
 	}
-	public void preorder(TreeNode focus){
-		if(focus!=null){
+
+	public void preorder(TreeNode focus) {
+		if (focus != null) {
 			System.out.println(focus.getKey());
 			preorder(focus.getLeft());
 			preorder(focus.getRight());
 		}
 	}
-	
-	public void postorder(TreeNode focus){
-		if(focus!=null){
+
+	public void postorder(TreeNode focus) {
+		if (focus != null) {
 			postorder(focus.getLeft());
 			postorder(focus.getRight());
 			System.out.println(focus.getKey());
 		}
 	}
-	
-	public TreeNode getRoot(){
+
+	public TreeNode getRoot() {
 		return root;
 	}
-	
+
+	public int findHeight(TreeNode node) {
+		if (node == null)
+			return 0;
+		else {
+			return 1 + Math.max(findHeight(node.getLeft()), findHeight(node.getRight()));
+		}
+	}
+
+	public int getHeight() {
+
+		return findHeight(getRoot());
+	}
 
 }
