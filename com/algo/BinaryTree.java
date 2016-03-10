@@ -1,11 +1,8 @@
 package com.algo;
 
-import java.util.LinkedList;
-
 public class BinaryTree {
 
 	private TreeNode root;
-	private LinkedList<TreeNode>[] treeLink = new LinkedList[5];
 
 	public void addNode(int key, String value) {
 		TreeNode newNode = new TreeNode(key, value);
