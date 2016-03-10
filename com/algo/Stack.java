@@ -44,5 +44,18 @@ public class Stack {
 			return -1;
 		}
 	}
+	
+	public boolean isFull(){
+		if(stackTop== stackSize-1)
+			return true;
+		else
+			return false;
+	}
+	public boolean isEmpty(){
+		if(stackTop== -1)
+			return true;
+		else
+			return false;
+	}
 
 }
